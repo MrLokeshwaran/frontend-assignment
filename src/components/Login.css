@@ -1,0 +1,55 @@
+/* Main container */
+.login-container {
+  width: 320px;
+  margin: 100px auto;
+  padding: 25px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Title */
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #2ecc71;
+}
+
+/* Input fields */
+.login-container input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Button */
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background: #27ae60;
+}
+
+/* Register text */
+.login-container p {
+  margin-top: 15px;
+}
+
+.login-container a {
+  color: #2ecc71;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
