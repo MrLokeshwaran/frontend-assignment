@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
-import Checkout from "./components/Checkout";
 import Navbar from "./components/Navbar";
+import Checkout from "./components/Checkout";
+import OrderSuccess from "./components/OrderSuccess";
+import OrderHistory from "./components/OrderHistory";
+import Contact from "./components/Contact";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -14,7 +17,6 @@ function App() {
 
   return (
     <Router>
-      {/* Pass cart and search to Navbar */}
       <Navbar cart={cart} search={search} setSearch={setSearch} />
 
       <Routes>
@@ -36,7 +38,11 @@ function App() {
           element={<Checkout cart={cart} setCart={setCart} />}
         />
 
-        <Route path="*" element={<h2>Page Not Found</h2>} />
+        <Route path="/success" element={<OrderSuccess />} />
+
+        <Route path="/orders" element={<OrderHistory />} />
+
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );

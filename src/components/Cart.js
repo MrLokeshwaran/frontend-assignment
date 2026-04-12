@@ -1,51 +1,86 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 function Cart({ cart, setCart }) {
   const navigate = useNavigate();
 
+  /* REMOVE ITEM */
   const removeItem = (index) => {
     const updated = cart.filter((_, i) => i !== index);
     setCart(updated);
-    Swal.fire("Removed", "Item removed from cart", "success");
   };
 
-  const changeQty = (index, delta) => {
+  /* INCREASE QTY */
+  const increaseQty = (index) => {
     const updated = [...cart];
-    if (!updated[index].qty) updated[index].qty = 1;
-    updated[index].qty += delta;
-    if (updated[index].qty < 1) updated[index].qty = 1;
+    updated[index].qty += 1;
     setCart(updated);
   };
 
-  const total = cart.reduce((sum, item) => sum + item.price * (item.qty || 1), 0);
+  /* DECREASE QTY */
+  const decreaseQty = (index) => {
+    const updated = [...cart];
+    if (updated[index].qty > 1) {
+      updated[index].qty -= 1;
+      setCart(updated);
+    }
+  };
+
+  /* TOTAL */
+  const getTotal = () => {
+    return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  };
 
   return (
     <div className="cart-container">
-      <h2>Your Cart</h2>
+      <h2>Your Cart 🛒</h2>
+
       {cart.length === 0 ? (
-        <p>Your cart is empty. <Link to="/home">Shop Now</Link></p>
+        <h3>Cart is empty</h3>
       ) : (
         <>
-          {cart.map((item, i) => (
-            <div className="cart-item" key={i}>
+          {cart.map((item, index) => (
+            <div className="cart-item" key={index}>
+              
               <img src={item.image} alt={item.name} />
+
               <div className="cart-details">
                 <h4>{item.name}</h4>
+
+                <p>{item.selectedUnit}</p>
+
                 <p>₹ {item.price}</p>
-                <div className="qty">
-                  <button onClick={() => changeQty(i, -1)}>-</button>
-                  <span>{item.qty || 1}</span>
-                  <button onClick={() => changeQty(i, 1)}>+</button>
+
+                {/* QTY CONTROLS */}
+                <div className="qty-box">
+                  <button onClick={() => decreaseQty(index)}>-</button>
+                  <span>{item.qty}</span>
+                  <button onClick={() => increaseQty(index)}>+</button>
                 </div>
-                <button className="remove-btn" onClick={() => removeItem(i)}>Remove</button>
+
+                <button
+                  className="remove-btn"
+                  onClick={() => removeItem(index)}
+                >
+                  Remove
+                </button>
               </div>
             </div>
           ))}
-          <h3>Total: ₹ {total}</h3>
-          <button className="clear-btn" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
+
+          <h3>Total: ₹ {getTotal()}</h3>
+
+          <button className="clear-btn" onClick={() => setCart([])}>
+            Clear Cart
+          </button>
+
+          <button
+            className="checkout-btn"
+            onClick={() => navigate("/checkout")}
+          >
+            Proceed to Checkout
+          </button>
         </>
       )}
     </div>

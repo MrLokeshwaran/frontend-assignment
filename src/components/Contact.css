@@ -1,0 +1,21 @@
+.contact-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-box {
+  width: 320px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.contact-box input,
+.contact-box textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+}

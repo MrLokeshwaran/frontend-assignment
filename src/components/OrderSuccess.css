@@ -1,0 +1,29 @@
+.success-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff5f5;
+}
+
+.success-box {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.success-box h1 {
+  color: green;
+}
+
+.success-box button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: black;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}

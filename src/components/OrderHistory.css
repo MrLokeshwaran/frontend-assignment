@@ -1,0 +1,46 @@
+.history-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.history-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.order-box {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.order-box:hover {
+  transform: translateY(-3px);
+}
+
+.order-box h4 {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.order-box p {
+  color: gray;
+  margin-bottom: 10px;
+}
+
+/* ITEMS */
+.order-box div {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* TOTAL */
+.order-box h3 {
+  text-align: right;
+  margin-top: 10px;
+  color: #ff4d4d;
+}

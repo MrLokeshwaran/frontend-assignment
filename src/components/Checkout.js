@@ -1,41 +1,44 @@
 import React from "react";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import "./Checkout.css";
+import Swal from "sweetalert2";
 
-function Checkout({ cart, setCart }) {
+export default function Checkout({ cart, setCart }) {
   const navigate = useNavigate();
-  const total = cart.reduce((sum, item) => sum + item.price * (item.qty || 1), 0);
 
-  const handlePayment = () => {
+  const placeOrder = () => {
     if (cart.length === 0) {
-      Swal.fire("Cart Empty", "Add items to checkout", "error");
+      Swal.fire("Error ❌", "Cart is empty", "error");
       return;
     }
 
-    Swal.fire({
-      icon: "success",
-      title: "Payment Successful 🎉",
-      text: `Order placed successfully! Total: ₹ ${total}`
-    });
+    const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    const newOrder = {
+      id: Date.now(),
+      items: cart,
+      total: cart.reduce((sum, item) => sum + item.price * item.qty, 0),
+      date: new Date().toLocaleString()
+    };
+
+    localStorage.setItem("orders", JSON.stringify([...existingOrders, newOrder]));
 
     setCart([]);
-    navigate("/home");
+
+    Swal.fire("Success 🎉", "Order placed successfully", "success").then(() => {
+      navigate("/success");
+    });
   };
 
   return (
-    <div className="checkout-container">
-      <h2>Checkout</h2>
-      <h3>Total Amount: ₹ {total}</h3>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h2>Checkout 💳</h2>
 
-      <div className="qr-box">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=lokeshwaransd@ok" alt="QR Payment" />
-        <p>Scan & Pay using UPI</p>
-      </div>
+      <h3>
+        Total: ₹{" "}
+        {cart.reduce((sum, item) => sum + item.price * item.qty, 0)}
+      </h3>
 
-      <button onClick={handlePayment}>Confirm Payment</button>
+      <button onClick={placeOrder}>Place Order</button>
     </div>
   );
 }
-
-export default Checkout;

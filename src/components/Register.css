@@ -1,87 +1,58 @@
-/* Register.css */
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #ff758c, #ff7eb3);
+.auth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff4d4d, #ff9999);
 }
 
-.register-container {
-  width: 100%;
-  max-width: 380px;
-  margin: 80px auto;
+.auth-box {
+  width: 350px;
   padding: 30px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   text-align: center;
 }
 
-.register-container h2 {
+.auth-box h2 {
   margin-bottom: 20px;
-  color: #333;
 }
 
-.register-container form {
+/* INPUT */
+.input-box {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 15px;
 }
 
-.register-container input {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-.register-container input:focus {
-  border-color: #ff758c;
+.input-box input {
+  border: none;
   outline: none;
+  width: 100%;
 }
 
-.register-container button {
+/* BUTTON */
+.auth-box button {
+  width: 100%;
   padding: 12px;
-  background: #ff758c;
+  background: #ff4d4d;
   color: white;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.register-container button:hover {
-  background: #e64980;
-}
-
-.switch-text {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.switch-text a {
-  color: #ff758c;
-  text-decoration: none;
+  border-radius: 12px;
   font-weight: bold;
+  transition: 0.3s;
 }
 
-/* 📱 Mobile Responsive */
-@media (max-width: 480px) {
-  .register-container {
-    margin: 40px 15px;
-    padding: 20px;
-  }
+.auth-box button:hover {
+  background: black;
+}
 
-  .register-container h2 {
-    font-size: 20px;
-  }
-
-  .register-container input {
-    padding: 10px;
-    font-size: 13px;
-  }
-
-  .register-container button {
-    padding: 10px;
-    font-size: 14px;
-  }
+/* LINK */
+.auth-box a {
+  color: #ff4d4d;
+  font-weight: bold;
 }
